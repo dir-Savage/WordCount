@@ -378,4 +378,203 @@ public class FunctionsS {
    * لو تتعامل مع عربي تأكد إن الملفات محفوظة utf-8 علشان الـ `Text` يقراها صح.
 
 
+---
+
+
+حلو — هاشرح كل سطر من اللي كتبته **سطر بسطر وبالعامية المصرية**، مع توضيح الصيغة الصحيحة، أمثلة، وملاحظات مهمة أو اختصارات لو احتجت. يلا نبدأ:
+
+---
+
+1. `pwd`
+
+* الوظيفة: بيطبع المسار الكامل للدليل اللي انت واقف فيه دلوقتي (present working directory).
+* مثال:
+
+  * لو انت في مجلد البيت: `/home/bashar` هتطبع `pwd` نفس السطر ده.
+* ملحوظة: مفيد لما تتوه ومش فاكر مكانك في الشجره بتاعت الفولدرات.
+
+---
+
+2. `whoami`
+
+* الوظيفة: بيطبع اسم المستخدم الحالي اللي شغال بيه الـ shell.
+* مثال: `whoami` => `basharrizq`
+* ملحوظة: مفيد لو شغال على جهاز فيه أكتر من يوزر أو عندك sudo.
+
+---
+
+3. `mkdir name_of_folder`
+
+* الوظيفة: ينشئ مجلد/دليل جديد بالاسم اللي انت حاطه.
+* مثال: `mkdir projects` هينشئ فولدر اسمه `projects`.
+* نصيحة: لو عايز تنشئ مجلدات متداخلة مرة واحدة استخدم `mkdir -p a/b/c`.
+
+---
+
+4. `cd name_of_directory`
+
+* الوظيفة: يغير الدليل الحالي للدليل اللي محدده.
+* مثال: `cd projects` => تنقلك لمجلد projects داخل الدليل الحالي.
+* ملاحظة: لو حطيت مسار كامل زي `cd /home/bashar/projects` ينقلك مباشرة.
+
+---
+
+5. `cd ..`
+
+* الوظيفة: يطلعك دليل واحد فوق (parent directory).
+* مثال: لو أنت في `/home/bashar/projects` وكتبت `cd ..` هتبقى في `/home/bashar`.
+
+---
+
+6. `touch name-of-file.txt`
+
+* الوظيفة: ينشئ ملف فاضي لو مش موجود، أو يحدث تاريخ التعديل (timestamp) لو الملف موجود.
+* مثال: `touch notes.txt` => لو الملف مش موجود هيتعمل؛ لو موجود هيتغير تاريخ التعديل.
+* ملاحظة: مش بيفتح الملف للكتابة، بس يخلّيه ظاهر.
+
+---
+
+7. `vi name-of-file`
+
+* الوظيفة: يفتح محرر النص `vi` (أو `vim` لو مثبت) علشان تكتب في الملف.
+* طريقة الكتابة والخروج الأساسية:
+
+  * لما يفتح: إضغط `i` علشان تدخل **insert mode** وتبدأ تكتب.
+  * بعد ما تخلص تكتب: إضغط `Esc` للخروج من insert mode.
+  * اكتب `:wq` واضغط Enter علشان تحفظ وتخرج. لو عايز تجبر الحفظ (مثلاً لو read-only) استخدم `:wq!`.
+* ملاحظة: في أوامر تانية زي `:q!` للخروج من غير حفظ.
+
+---
+
+8. `cat name-of-file`
+
+* الوظيفة: يعرض محتوى الملف على شاشة الترمينال.
+* مثال: `cat notes.txt` => يطبع النص كله.
+* ملاحظة: لو الملف كبير استخدم `less notes.txt` أو `more notes.txt` للتصفح الصفحة بصفحة.
+
+---
+
+9. `cp first-directory-of-file-you-want-to-copy  second-directory-to-copy-to`
+
+* الصيغة الصحيحة: `cp <source> <destination>`
+* الوظيفة: ينسخ ملف/ملفات من مكان لمكان تاني.
+* مثال: `cp file.txt /home/user/backup/` أو `cp file.txt file-copy.txt`.
+* لو عايز تنسخ مجلد كامل: `cp -r folder1/ folder2/` (`-r` = recursive).
+
+---
+
+10. `mv first-directory-of-file-you-want-to-move  second-directory-to-move-to`
+
+* الصيغة: `mv <source> <destination>`
+* الوظيفة: ينقل الملف أو يعيد تسميته.
+* مثال: `mv file.txt ../archive/` ينقله لمجلد archive، أو `mv oldname.txt newname.txt` يعيد تسميته.
+* ملاحظة: مش بيعمل نسخة، بينقل فعلاً.
+
+---
+
+11. `rm directory-of-file-you-want-to-remove`
+
+* الوظيفة: يحذف ملف أو فولدر (حسب الصيغة).
+* أمثلة مهمة:
+
+  * لحذف ملف: `rm file.txt`
+  * لحذف مجلد ومحتواه: `rm -r foldername/` أو `rm -rf foldername/` (حذر: `-f` يجبر الحذف بدون تأكيد).
+* تحذير: أمر خطير — خصوصًا `rm -rf /some/path` ممكن يحذف بيانات للأبد.
+
+---
+
+12. `ls`
+
+* الوظيفة: يعرض قائمة الملفات والمجلدات في الدليل الحالي.
+* أمثلة مفيدة:
+
+  * `ls -l` => تفاصيل (أذونات، مالك، حجم، تاريخ).
+  * `ls -a` => يعرض الملفات المخفية (اللي بيبتدوا بـ `.`).
+  * `ls -la` أو `ls -al` => الاتنين مع بعض.
+
+---
+
+13. `hdfs dfs -ls /directory`
+
+* الوظيفة: يعرض ملفات ومجلدات موجودة على **HDFS** (مش النظام المحلي).
+* مثال: `hdfs dfs -ls /user/bashar/input` هيرجعلك لستة ملفات/folders في المسار ده على HDFS.
+* ملاحظة: استخدم `hdfs dfs -ls -R /path` لو عايز لقائمة متفرعة recursively.
+
+---
+
+14. `hdfs dfs -mkdir name-of-directory`
+
+* الوظيفة: ينشئ مجلد على HDFS.
+* مثال: `hdfs dfs -mkdir /user/bashar/input`
+* نصيحة: لو عايز تعمل كل المجلدات اللي مش موجودة استخدم `-p`: `hdfs dfs -mkdir -p /user/bashar/input/data`.
+
+---
+
+15. `hdfs dfs -put directory-of-file-on-your-local-to-copy-to-hdfs directory-to-copy-to-in-hdfs`
+
+* الصيغة: `hdfs dfs -put <local_path> <hdfs_path>`
+* الوظيفة: تنقل/تنسخ ملف من النظام المحلي إلى HDFS.
+* مثال: `hdfs dfs -put localfile.txt /user/bashar/input/`
+* ملاحظة: في أوامر تانية شبهها: `-copyFromLocal` (نفس الشغل تقريبًا).
+
+---
+
+16. `hdfs dfs -cat /path/to/file-on-hdfs`
+
+* الوظيفة: يطبع محتوى ملف موجود على HDFS في الترمينال.
+* الصيغة الصحيحة لازم تبدأ بـ `hdfs dfs -cat` مش مجرد `cat`.
+* مثال: `hdfs dfs -cat /user/bashar/input/data.txt`
+* ملاحظة: مفيد للتأكد من محتوى الملف اللي رفعته.
+
+---
+
+17. `hdfs dfs -get directory-of-file-on-your-hdfs-to-copy-to-local directory-to-copy-to-in-local`
+
+* الصيغة: `hdfs dfs -get <hdfs_path> <local_path>`
+* الوظيفة: يحمل ملف/مجلد من HDFS وينسخه للنظام المحلي.
+* مثال: `hdfs dfs -get /user/bashar/output/part-r-00000 ./local-output/`
+* ملاحظة: في برضو `-copyToLocal` اللي بتعمل نفس الشئ.
+
+---
+
+18. `hdfs dfs -touchz name-of-file.txt`
+
+* الوظيفة: ينشئ ملف فاضي على HDFS (زي touch في اللينكس لكن بيخلق صفر بايت).
+* مثال: `hdfs dfs -touchz /user/bashar/input/empty.txt`
+* ملاحظة: مفيد لو محتاج تضمن وجود الملف قبل تشغيل job أو لتمثيل وجود ملف بدون محتوى.
+
+---
+
+19. `hdfs dfs -cp first-directory-of-file-you-want-to-copy  second-directory-to-copy-to`
+
+* الصيغة: `hdfs dfs -cp <src> <dst>`
+* الوظيفة: ينسخ ملف/مجلد داخل HDFS من مكان لمكان تاني.
+* مثال: `hdfs dfs -cp /user/bashar/input/data.txt /user/bashar/backup/data.txt`
+* ملاحظة: مش بيأثر على الملف الأصلي، بس بينسخه.
+
+---
+
+20. `hdfs dfs -rm first-directory-of-file-you-want-to-remove_on-hdfs`
+
+* الصيغة: `hdfs dfs -rm <hdfs_path>` لحذف ملف. لحذف مجلد استخدم `-rm -r` أو `-rm -skipTrash -r` حسب النسخة.
+* مثال: `hdfs dfs -rm /user/bashar/input/data.txt` أو `hdfs dfs -rm -r /user/bashar/tempdir`
+* تحذير: زي الأمر المحلي، الحذف على HDFS ممكن يكون نهائي لو مافيش trash مفعل.
+
+---
+
+21. `hdfs dfs -help command-that-you-want-to-know-what-it-do`
+
+* الصيغة: `hdfs dfs -help` أو `hdfs dfs -help -command` أو `hdfs help -cmd` حسب نسخة الـ Hadoop.
+* الوظيفة: يديك مساعدة عن أوامر `hdfs dfs` أو تفاصيل عن كل option.
+* مثال: `hdfs dfs -help -put` أو لو مش واضح، شغّل `hdfs dfs -help` وشوف اللستة الكاملة.
+
+---
+
+### شوية نصايح سريعة عامة:
+
+* دايمًا خليك حذر مع أوامر الحذف (`rm -rf` / `hdfs dfs -rm -r`)، وخصوصًا لو شغال بصلاحيات root أو على HDFS production.
+* لو مش متأكد من نتيجة `cp` أو `mv` جرب أول على ملف صغير أو مجلد تجريبي.
+* استخدم `ls -la` و`hdfs dfs -ls -h` (لو متاح) علشان تشوف الحجم والبيانات بشكل أوضح.
+* شغّل `hdfs dfs -du -h /path` لو عايز تعرف حجم الملفات على HDFS.
+
 
